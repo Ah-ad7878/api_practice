@@ -3,7 +3,7 @@ import 'package:api_practice/api_services_class.dart';
 
 class AlbumApiService extends ApiServicesClass {
   @override
-  String get apiUrl => 'albums';
+  String get apiUrl => 'comments';
 
   Future<List<AlbumClass>> getAlbums() async {
     final List rawList = await fetch();

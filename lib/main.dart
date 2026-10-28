@@ -64,8 +64,37 @@ class _HomePageState extends State<HomePage> {
               final album = albums[index];
               return ListTile(
                 leading: CircleAvatar(child: Text('${album.id}')),
-                title: Text(album.title ?? 'No Title'),
-                subtitle: Text('User id = ${album.userId}'),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Name = ${album.name}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      'email = ${album.email}',
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                subtitle: Padding(
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    'body = ${album.body}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      height: 1.3,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
               );
             },
           );

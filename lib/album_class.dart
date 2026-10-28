@@ -2,28 +2,36 @@
 import 'dart:convert';
 
 class AlbumClass {
-  int? userId;
   int? id;
-  String? title;
-  AlbumClass({this.userId, this.id, this.title});
+  String? name;
+  String? email;
+  String? body;
+  AlbumClass({this.id, this.name, this.email, this.body});
 
-  AlbumClass copyWith({int? userId, int? id, String? title}) {
+  AlbumClass copyWith({int? id, String? name, String? email, String? body}) {
     return AlbumClass(
-      userId: userId ?? this.userId,
       id: id ?? this.id,
-      title: title ?? this.title,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      body: body ?? this.body,
     );
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{'userId': userId, 'id': id, 'title': title};
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'email': email,
+      'body': body,
+    };
   }
 
   factory AlbumClass.fromMap(Map<String, dynamic> map) {
     return AlbumClass(
-      userId: map['userId'] != null ? map['userId'] as int : null,
       id: map['id'] != null ? map['id'] as int : null,
-      title: map['title'] != null ? map['title'] as String : null,
+      name: map['name'] != null ? map['name'] as String : null,
+      email: map['email'] != null ? map['email'] as String : null,
+      body: map['body'] != null ? map['body'] as String : null,
     );
   }
 
@@ -33,15 +41,22 @@ class AlbumClass {
       AlbumClass.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'AlbumClass(userId: $userId, id: $id, title: $title)';
+  String toString() {
+    return 'AlbumClass(id: $id, name: $name, email: $email, body: $body)';
+  }
 
   @override
   bool operator ==(covariant AlbumClass other) {
     if (identical(this, other)) return true;
 
-    return other.userId == userId && other.id == id && other.title == title;
+    return other.id == id &&
+        other.name == name &&
+        other.email == email &&
+        other.body == body;
   }
 
   @override
-  int get hashCode => userId.hashCode ^ id.hashCode ^ title.hashCode;
+  int get hashCode {
+    return id.hashCode ^ name.hashCode ^ email.hashCode ^ body.hashCode;
+  }
 }
